@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script async type="text/javascript" src="/js/background.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/css/index.min.css">
+    <meta charset="UTF-8">
+    <title>大开开</title>
+</head>
+<body>
+    <div id="app">
+        <el-card shadow="hover" :class="[ui.showHistory?'_80_width':'container']">
+            <div id="logo"></div>
+            <el-divider>{{ui.title}}</el-divider>
+            <transition name="el-zoom-in-center">
+                <div id="form" v-show="!ui.showHistory">
+                    <div id="uploader" class="center">
+                        <el-upload 
+                        ref="uploader"
+                        drag
+                        action="/upload/"
+                        multiple 
+                        :auto-upload="false" 
+                        :on-success="uploadSuccess"
+                        :on-error="uploadError"
+                        :data="info"
+                        :on-limit="overLimit"
+                        :limit="5"
+                        >
+                            <i class="el-icon-upload"></i>
+                            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        </el-upload>
+                    </div>
+                    <div v-show="!ui.findToken">
+                        <div class="center half-width">
+                            <el-input v-model="info.token" placeholder="输入令牌以验证身份" clearable=true></el-input>
+                        </div>
+                        <div class="center">
+                            <el-switch v-model="info.remember" active-text="在本地存储我的令牌" active-color="green" @change="saveToken"></el-checkbox>
+                        </div>
+                    </div>
+                    <div  v-if="ui.findToken">
+                        <div class="center">
+                            <el-popover placement="top" title="" trigger="click">
+                                <div class="center">
+                                    <el-button size="mini" type="danger" @click="clearToken">清空令牌</el-button>
+                                </div>
+                                <el-tag class="hand" size="mini" slot="reference">本地已发现认证令牌,将使用该令牌进行身份验证。可点击更换</el-tag>
+                            </el-popover>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+            <transition name="el-zoom-in-center">
+                <div id="historyList" v-show="ui.showHistory">
+                    <el-table :data="history" stripe style="width: 100%" empty-text="在您的设备上，未发现任何文件上传记录!(^_^)!">
+                        <el-table-column prop="date" label="日期" width="200" align="center"></el-table-column>
+                        <el-table-column prop="fileName" label="文件名" width="180" align="center"></el-table-column>
+                        <el-table-column prop="url" label="URL" align="center"></el-table-column>
+                        <el-table-column label="链接" align="center" width="70">
+                            <template slot-scope="scope">
+                                <el-link type="primary" target="_blank" :href=scope.row.url>查看</el-link>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+            </transition>
+            <div class="center" id="upload-btn">
+                <div v-show="!ui.showHistory">
+                    <el-button type="primary" round @click="upload">上传</el-button>
+                    <el-button type="info" round @click="ui.showHistory=true">上传记录</el-button>
+                </div>
+                <div v-show="ui.showHistory">
+                    <el-button type="danger" round @click="clearHistory">清空</el-button>
+                    <el-button type="success" round @click="ui.showHistory=false">返回</el-button>
+                </div>
+            </div>
+        </el-card>
+        <canvas id="background"></canvas>
+    </div>
+</body>
+<script src="/js/index.min.js"></script>
+</html>

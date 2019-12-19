@@ -1,0 +1,46 @@
+
+fdfs:
+  soTimeout: 15000
+  connectTimeout: 15000
+  thumbImage:
+    width: 200
+    height: 200
+  trackerList:
+    # 配置你的Tracker地址
+    - 111.111.111.111:22122
+    - 222.222.222.222:22123
+  pool:
+    #从池中借出的对象的最大数目（配置为-1表示不限制）
+    max-total: -1
+    #获取连接时的最大等待毫秒数(默认配置为5秒)
+    max-wait-millis: 5000
+    #每个key最大连接数
+    max-total-per-key: 50
+    #每个key对应的连接池最大空闲连接数
+    max-idle-per-key: 10
+    #每个key对应的连接池最小空闲连接数
+    max_idle_per_key: 5
+
+# thymeleaf
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+bestbigkk:
+  # fastDFS服务域名或者IP forExample: http://resource.bestbigkk.com/
+  domain: http://resource.bestbigkk.com/
+  # 授权令牌，key=令牌值，value=可用次数(-1=不限制次数)
+  token: {131421: -1, xugongkai: 200}
+  # 是否在异常响应对象里面包含堆栈错误信息
+  includeStackTrace: true
+server:
+  port: 11110

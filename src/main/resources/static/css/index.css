@@ -1,0 +1,79 @@
+body, html {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: 0;
+		padding: 0;
+}
+#background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: -100;
+}
+._80_width{
+	margin: 70px auto 0;
+	width: 60%;
+	opacity: 0.7;
+	user-select: text;
+	overflow: auto;
+	max-height: 900px;
+}
+._80_width::-webkit-scrollbar{
+	width: 1px;
+}
+._80_width::-webkit-scrollbar-button{
+	width: 1px;
+}
+.container{
+	margin: 70px auto 0;
+	width: 500px;
+	opacity: 0.7;
+	user-select: none;
+	overflow: visible;
+}
+#logo{
+	height: 100px;
+	width: 100px;
+	margin: 0 auto;
+	background-image: url("http://resource.bestbigkk.com/group1/M00/00/00/L16Br137NeaAe4GGAAAwiy3Jq9I849.svg");
+	background-size: cover;
+	border-radius: 50%;
+	border: lightskyblue 2px solid;
+}
+#form{
+	width: 80%;
+	margin: 0 auto;
+}
+.center{
+	margin: 5px auto;
+	text-align: center;
+}
+.half-width{
+	width: 50%;
+}
+#upload-btn{
+	margin: 10px auto;
+}
+
+.el-upload-list{
+	max-height: 250px;
+	overflow: auto;
+}
+.el-upload-list::-webkit-scrollbar{
+	width: 1px;
+}
+.el-upload-list::-webkit-scrollbar-button{
+	width: 1px;
+}
+.hand{
+	cursor: pointer;
+}
+#historyList{
+	min-height: 200px;
+}
+.el-notification__content{
+	word-break:break-all
+}
