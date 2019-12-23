@@ -39,8 +39,8 @@ bestbigkk:
   # fastDFS服务域名或者IP forExample: http://resource.bestbigkk.com/
   domain: http://bestbigkk.com/
   # 授权令牌，key=令牌值，value=可用次数(-1=不限制次数)
-  token: {131421: -1, xugongkai: 200}
+  token: {abcedf: -1, xugongkai: 200}
   # 是否在异常响应对象里面包含堆栈错误信息
   includeStackTrace: true
 server:
-  port: 11110
+  port: 8081
