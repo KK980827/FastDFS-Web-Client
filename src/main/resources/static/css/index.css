@@ -74,15 +74,20 @@ body, html {
 	border-radius: 50%;
 	border: lightskyblue 2px solid;
 }
+#form{
+	width: 80%;
+	margin: 0 auto;
+}
 @media (max-width: 700px){
 	#logo{
 		height: 70px;
 		width: 70px;
 	}
-}
-#form{
-	width: 80%;
-	margin: 0 auto;
+	#form{
+    	width: 100%;
+    	text-align: center;
+    	margin: 0 auto;
+    }
 }
 .center{
 	margin: 5px auto;
