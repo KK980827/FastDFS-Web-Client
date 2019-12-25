@@ -69,7 +69,7 @@
                         <p id="m_empty" v-show="history===undefined || history.length==0">该设备未发现任何上传记录!(^_^)!</p>
                         <div class="m_ls" v-for="his in history">
                             <div class="m_ls_url">
-                                <el-link type="primary" target="_blank" href=his.url>{{his.url}}</el-link>
+                                <el-link type="primary" target="_blank" :href=his.url>{{his.url}}</el-link>
                             </div>
                             <div class="m_ls_op">
                                 <el-tag size=mini type="warning">{{his.fileName}}</el-tag>
