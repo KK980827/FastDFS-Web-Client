@@ -5,13 +5,13 @@
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script async type="text/javascript" src="/js/background.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="/css/index.min.css">
+    <link rel="stylesheet" href="/css/index.css">
     <meta charset="UTF-8">
-    <title>大开开</title>
+    <title>大开开-A</title>
 </head>
 <body>
-    <div id="app">
-        <el-card shadow="hover" :class="[ui.showHistory?'_80_width':'container']">
+    <div id="app" class="colony_a">
+        <el-card shadow="never" :class="[ui.showHistory?'_80_width':'container']">
             <div id="logo"></div>
             <el-divider>{{ui.title}}</el-divider>
             <transition name="el-zoom-in-center">
@@ -30,7 +30,7 @@
                         :limit="5"
                         >
                             <i class="el-icon-upload"></i>
-                            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                            <div class="el-upload__text"><span class="pc_show_inline">将文件拖到此处，或</span><em>点击上传</em></div>
                         </el-upload>
                     </div>
                     <div v-show="!ui.findToken">
@@ -55,7 +55,7 @@
             </transition>
             <transition name="el-zoom-in-center">
                 <div id="historyList" v-show="ui.showHistory">
-                    <el-table :data="history" stripe style="width: 100%" empty-text="在您的设备上，未发现任何文件上传记录!(^_^)!">
+                    <el-table class="pc_show_block" :data="history" stripe style="width: 100%" empty-text="在您的设备上，未发现任何文件上传记录!(^_^)!">
                         <el-table-column prop="date" label="日期" width="200" align="center"></el-table-column>
                         <el-table-column prop="fileName" label="文件名" width="180" align="center"></el-table-column>
                         <el-table-column prop="url" label="URL" align="center"></el-table-column>
@@ -65,21 +65,45 @@
                             </template>
                         </el-table-column>
                     </el-table>
+                    <div class="m_his_list mobile_show_block">
+                        <p id="m_empty" v-show="history===undefined || history.length==0">该设备未发现任何上传记录!(^_^)!</p>
+                        <div class="m_ls" v-for="his in history">
+                            <div class="m_ls_url">
+                                <el-link type="primary" target="_blank" href=his.url>{{his.url}}</el-link>
+                            </div>
+                            <div class="m_ls_op">
+                                <el-tag size=mini type="warning">{{his.fileName}}</el-tag>
+                                <el-tag size=mini type="info">{{his.date}}</el-tag>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </transition>
             <div class="center" id="upload-btn">
                 <div v-show="!ui.showHistory">
-                    <el-button type="primary" round @click="upload">上传</el-button>
-                    <el-button type="info" round @click="ui.showHistory=true">上传记录</el-button>
+                    <div class="pc_show_block">
+                        <el-button type="primary" round @click="upload">上传</el-button>
+                        <el-button type="info" round @click="ui.showHistory=true">上传记录</el-button>
+                    </div>
+                    <div class="mobile_show_block">
+                        <el-button type="primary" @click="upload" size=mini>上传</el-button>
+                        <el-button type="info" @click="ui.showHistory=true" size=mini>上传记录</el-button>
+                    </div>
                 </div>
                 <div v-show="ui.showHistory">
-                    <el-button type="danger" round @click="clearHistory">清空</el-button>
-                    <el-button type="success" round @click="ui.showHistory=false">返回</el-button>
+                    <div class="pc_show_block">
+                        <el-button type="danger" round @click="clearHistory">清空</el-button>
+                        <el-button type="success" round @click="ui.showHistory=false">返回</el-button>
+                    </div>
+                    <div class="mobile_show_block">
+                        <el-button type="danger" @click="clearHistory" size=mini>清空</el-button>
+                        <el-button type="success" @click="ui.showHistory=false" size=mini>返回</el-button>
+                    </div>
                 </div>
             </div>
         </el-card>
-        <canvas id="background"></canvas>
+        <canvas id="background" class="pc_show_block"></canvas>
     </div>
 </body>
-<script src="/js/index.min.js"></script>
+<script src="/js/index.js"></script>
 </html>

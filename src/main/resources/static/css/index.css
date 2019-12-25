@@ -1,3 +1,6 @@
+:root{
+	--min-width: 700px;
+}
 body, html {
 		position: absolute;
 		top: 0;
@@ -19,7 +22,7 @@ body, html {
 	opacity: 0.7;
 	user-select: text;
 	overflow: auto;
-	max-height: 900px;
+	min-height: 500px;
 }
 ._80_width::-webkit-scrollbar{
 	width: 1px;
@@ -34,6 +37,34 @@ body, html {
 	user-select: none;
 	overflow: visible;
 }
+
+.pc_show_block, .pc_show_inline, .mobile_show_inline, .mobile_show_block{
+	display: none;
+}
+
+@media (min-width: 701px){
+	.pc_show_inline{
+		display: inline-block;
+	}
+	.pc_show_block{
+		display: block;
+	}
+}
+@media (max-width: 700px){
+	.mobile_show_inline{
+		display: inline-block;
+	}
+	.mobile_show_block{
+		display: block;
+	}
+	.container{
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 0;
+		border: none;
+	}
+}
 #logo{
 	height: 100px;
 	width: 100px;
@@ -42,6 +73,12 @@ body, html {
 	background-size: cover;
 	border-radius: 50%;
 	border: lightskyblue 2px solid;
+}
+@media (max-width: 700px){
+	#logo{
+		height: 70px;
+		width: 70px;
+	}
 }
 #form{
 	width: 80%;
@@ -57,7 +94,6 @@ body, html {
 #upload-btn{
 	margin: 10px auto;
 }
-
 .el-upload-list{
 	max-height: 250px;
 	overflow: auto;
@@ -74,6 +110,65 @@ body, html {
 #historyList{
 	min-height: 200px;
 }
+.el-table{
+	max-height: 700px;
+	overflow: scroll;
+}
+.el-table::-webkit-scrollbar{
+	width: 1px;
+}
+.el-table::-webkit-scrollbar-button{
+	width: 1px;
+}
 .el-notification__content{
 	word-break:break-all
+}
+@media (max-width: 700px){
+	#historyList{
+		width: 100%;
+		height: 100%;
+	}
+	._80_width{
+		margin: 0;
+		width: 100%;
+		opacity: 0.7;
+		user-select: text;
+		overflow: auto;
+		max-height: 9999px;
+		border: none;
+	}
+}
+
+#m_empty{
+	text-align: center;
+	font-size: 15px;
+	color: darkgray;
+	line-height: 200px;
+	user-select: none;
+}
+.m_ls{
+	word-break: break-all;
+	border-bottom: 1px lightgray solid;
+	margin-top: 5px;
+}
+.m_his_list{
+	max-height: 600px;
+	overflow: scroll;
+}
+.m_his_list::-webkit-scrollbar{
+	width: 1px;
+}
+.m_his_list::-webkit-scrollbar-button{
+	width: 1px;
+}
+.m_ls_url .el-link{
+	display:block;
+	word-break: break-all;
+	font-size: 15px;
+	color: darkgray;
+	user-select: text;
+}
+.m_ls_op{
+	margin: 5px 0;
+	text-align: right;
 }
