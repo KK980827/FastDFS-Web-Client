@@ -115,7 +115,7 @@ const vue = new Vue({
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-                this.localStorage.removeItem(_this.consts.historyKey);
+                window.localStorage.removeItem(_this.consts.historyKey);
                 this.$message({
                     message : "历史记录已经删除完成",
                     center: true,
